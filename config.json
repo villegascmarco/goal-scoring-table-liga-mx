@@ -1,0 +1,7 @@
+{
+    "home_url": "https://ligamx.net/cancha/estadisticahistorica/1/eyJpZERpdmlzaW9uIjoiMSIsImlkVGVtcG9yYWRhIjoiNzAiLCAiaWRUb3JuZW8iOiIyIn0=",
+    "player_goals_link": "//table[@class=\"default tbl_goleos\"]//a[@class=\"loadershow ganados\"]/@href",
+    "player_name": "//td[@class=\"titulo\"]/text()",
+    "match_days": "//tr[contains(@class, \"informacion\")]/td[position()=6]/text()",
+    "goals_per_match": "//p[@style=\"margin: 0px !important;\"]/text()"
+}
