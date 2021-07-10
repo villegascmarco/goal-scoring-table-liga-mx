@@ -6,12 +6,13 @@ import json
 import csv
 
 player_goals_link = ''
+minutes_played = ''
 player_name = ''
 match_days = ''
 goals_per_match = ''
 top_scorers = []
 global_player = ''
-fields = ('name', 'J-1', 'J-2', 'J-3', 'J-4', 'J-5', 'J-6', 'J-7', 'J-8',
+fields = ('name', 'minutes played', 'J-1', 'J-2', 'J-3', 'J-4', 'J-5', 'J-6', 'J-7', 'J-8',
           'J-9', 'J-10', 'J-11', 'J-12', 'J-13', 'J-14', 'J-15', 'J-16', 'J-17')
 
 logging.basicConfig(level=logging.INFO)
@@ -19,11 +20,12 @@ logger = logging.getLogger(__name__)
 
 
 def get_url():
-    global player_goals_link, player_name, match_days, goals_per_match
+    global player_goals_link, player_name, match_days, goals_per_match, minutes_played
 
     with open('config.json', 'r') as file:
         config = json.load(file)
         player_goals_link = config['player_goals_link']
+        minutes_played = config['minutes_played']
         player_name = config['player_name']
         match_days = config['match_days']
         goals_per_match = config['goals_per_match']
@@ -53,10 +55,14 @@ def parse_home():
         logging.info('Parsing data.')
         list_players = list(html_var.xpath(player_goals_link))
 
-        # parse_goals_per_player(f'https://ligamx.net{list_players[0]}')
-        for player in list_players:
-            row = parse_goals_per_player(f'https://ligamx.net{player}')
+        minutes_played_list = list(html_var.xpath(minutes_played))
+
+        parse_goals_per_player(f'https://ligamx.net{list_players[0]}')
+        for index, player in enumerate(list_players):
+            row = parse_goals_per_player(
+                f'https://ligamx.net{player}')
             row.insert(0, global_player)
+            row.insert(1, int(minutes_played_list[index]))
             top_scorers.append(row)
 
         save_csv()
