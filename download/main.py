@@ -1,7 +1,6 @@
 import requests
 import lxml.html as html
 import logging
-import datetime
 import json
 import csv
 
@@ -22,7 +21,7 @@ logger = logging.getLogger(__name__)
 def get_url():
     global player_goals_link, player_name, match_days, goals_per_match, minutes_played
 
-    with open('config.json', 'r') as file:
+    with open('../config.json', 'r') as file:
         config = json.load(file)
         player_goals_link = config['player_goals_link']
         minutes_played = config['minutes_played']

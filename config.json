@@ -4,5 +4,9 @@
     "minutes_played": "//table[@class=\"default tbl_goleos\"]//td[@class=\"tpts text-center\"]/a[@class=\"loadershow\"]/text()",
     "player_name": "//td[@class=\"titulo\"]/text()",
     "match_days": "//tr[contains(@class, \"informacion\")]/td[position()=6]/text()",
-    "goals_per_match": "//p[@style=\"margin: 0px !important;\"]/text()"
+    "goals_per_match": "//p[@style=\"margin: 0px !important;\"]/text()",
+    "user": "root",
+    "password": "root",
+    "host": "localhost",
+    "database": "pruebas"
 }
