@@ -1,5 +1,8 @@
 # Liga MX Goal Scoring Table scraper
 
+Web scraper with Python that gather all Liga MX most scorers players throughout the season and add extra statistics using Pandas library.
+### Setup
+
 1. Create virtual environment.
     ```cmd
     py -m venv venv
