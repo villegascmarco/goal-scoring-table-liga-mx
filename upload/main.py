@@ -1,4 +1,6 @@
+# from upload.Log import Log
 import connection as conn
+from log import Log
 import json
 import csv
 import logging
@@ -7,10 +9,16 @@ import argparse
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
+log: None
+
 
 def main(file_name):
-    connection = get_connection()
+    global log
 
+    connection = get_connection()
+    log = Log(connection)
+
+    log.new_log(file_name, 'N/A', 'Starting process', 0)
     create_table(connection)
 
     insert_data(file_name, connection)
@@ -59,6 +67,7 @@ def create_table(connection):
 
 def insert_data(file_name, connection):
     logger.info(f'Reading data from {file_name}')
+    log.new_log(file_name, 'N/A', 'Reading data', 0)
     with open(file_name, encoding='utf-8') as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
 
@@ -80,6 +89,7 @@ def insert_data(file_name, connection):
             {row[16]}, {row[17]}, {row[18]},
             {row[19]}, {row[20]}, {row[21]}),'''
 
+            log.new_log(file_name, row[0], 'upload', row_line)
             row_line += 1
         data = data[:-1]
         sql_statement = f'INSERT INTO top_scorers VALUES {data}'
