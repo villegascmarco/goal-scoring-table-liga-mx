@@ -24,7 +24,7 @@ def transform():
 
     for file in glob.glob('transform/*.csv'):
         subprocess.run(
-            ['python', 'main.py', file], cwd='./transform')
+            ['python', 'main.py', file.replace('transform\\', '')], cwd='./transform')
         os.remove(file)
         subprocess.run(['move', r'transform\*.csv', r'upload'],
                        shell=True)
@@ -33,10 +33,9 @@ def transform():
 def load():
 
     for file in glob.glob('upload/*.csv'):
-        file = file.replace('upload\\', '')
         subprocess.run(
-            ['python', 'main.py', file], cwd='./upload')
-        os.remove(f'upload/{file}')
+            ['python', 'main.py', file.replace('upload\\', '')], cwd='./upload')
+        os.remove(file)
 
 
 if __name__ == '__main__':

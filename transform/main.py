@@ -1,4 +1,5 @@
 import logging
+import argparse
 import pandas as pd
 
 logging.basicConfig(level=logging.INFO)
@@ -67,9 +68,11 @@ def save_csv(df, filename):
     df.to_csv(clean_filename, index=False)
 
 
-def run():
-    main('top_scorers.csv')
-
-
 if __name__ == '__main__':
-    run()
+    parser = argparse.ArgumentParser()
+    parser.add_argument('file_name',
+                        help='Path old file',
+                        type=str)
+
+    args = parser.parse_args()
+    main(args.file_name)
