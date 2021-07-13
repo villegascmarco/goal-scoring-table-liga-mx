@@ -19,3 +19,6 @@ Web scraper with Python that gather all Liga MX most scorers players throughout 
     ```cmd
     python main.py
     ```
+### config.json
+
+Here are the detabase properties (db name, password, user) and link of the source page where all the input comes from.
